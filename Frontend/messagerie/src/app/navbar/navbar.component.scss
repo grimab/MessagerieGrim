@@ -1,0 +1,171 @@
+// /* navbar.component.scss */
+// .navbar {
+//     background-color: #007bff;
+//     color: white;
+//     display: flex;
+//     justify-content: space-between;
+//     padding: 10px 20px;
+// }
+
+// .navbar-brand {
+//     font-size: 1.5em;
+// }
+
+// .navbar-nav {
+//     list-style: none;
+//     display: flex;
+// }
+
+// .navbar-nav li {
+//     margin-left: 20px;
+// }
+
+// .navbar-nav a {
+//     color: white;
+//     text-decoration: none;
+//     &:hover {
+//         color: #ddd;
+//     }
+// }
+// /* navbar.component.scss */
+// .navbar {
+//     background-color: #007bff;
+//     color: white;
+//     display: flex;
+//     justify-content: space-between;
+//     padding: 10px 20px;
+// }
+
+// .navbar-brand {
+//     font-size: 1.5em;
+// }
+
+// .navbar-nav {
+//     list-style: none;
+//     display: flex;
+//     align-items: center; // Pour aligner verticalement les éléments de la liste
+// }
+
+// .navbar-nav li {
+//     position: relative; // Position relative pour le menu déroulant
+//     margin-left: 20px;
+// }
+
+// .navbar-nav a {
+//     color: white;
+//     text-decoration: none;
+//     &:hover {
+//         color: #ddd;
+//     }
+// }
+
+// // Styles pour le menu déroulant
+// .navbar-nav li ul {
+//     display: none; // Cache le sous-menu par défaut
+//     position: absolute;
+//     top: 100%; // Position sous l'élément parent
+//     left: 0;
+//     background-color: #007bff; // Couleur de fond pour correspondre à la barre de navigation
+//     min-width: 150px; // Largeur minimale du sous-menu
+//     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+//     z-index: 1;
+// }
+
+// .navbar-nav li ul li {
+//     margin: 0; // Réinitialiser la marge pour les éléments de sous-menu
+//     padding: 8px 16px; // Espacement pour les éléments de sous-menu
+//     &:hover {
+//         background-color: #0056b3; // Changement de couleur au survol
+//     }
+// }
+
+// .navbar-nav li:hover > ul {
+//     display: block; // Affiche le sous-menu lors du survol
+// }
+
+// .navbar-nav li ul a {
+//     white-space: nowrap; // Évite le retour à la ligne dans les éléments de sous-menu
+// }
+/* navbar.component.scss */
+
+.navbar {
+    // background-color: #007bff;
+    background-color: rgba(45, 47, 121);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    z-index: 1000;
+    position: relative;
+  
+    .navbar-brand {
+      font-size: 1.5em;
+    }
+  
+    .navbar-nav {
+      list-style: none;
+      display: flex;
+      align-items: center;
+  
+      li {
+        position: relative;
+        margin-left: 20px;
+  
+        &:hover > ul {
+          display: block;
+        }
+  
+        ul {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          // background-color: #007bff;
+          background-color: rgb(97, 101, 225);
+          min-width: 150px;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          z-index: 1;
+  
+          li {
+            margin: 0;
+            padding: 8px 16px;
+  
+            &:hover {
+              background-color: #0056b3;
+            }
+          }
+  
+          a {
+            white-space: nowrap;
+          }
+        }
+  
+        a {
+          color: white;
+          text-decoration: none;
+  
+          &:hover {
+            color: #ddd;
+          }
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .navbar-nav {
+      flex-direction: column;
+      width: 100%;
+  
+      li {
+        margin-left: 0;
+        margin-top: 10px;
+      }
+    }
+  }
+  

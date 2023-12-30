@@ -1,0 +1,101 @@
+<div class="update-background">
+  <!-- Éléments de fond -->
+  <div class="blue-circle"></div>
+  <div class="small-blue-circle"></div>
+
+  <!-- Section de l'image de profil -->
+  <div class="profile-image-section">
+      <div class="profile-image-container">
+          <img *ngIf="user.Image_de_profil" [src]="user.Image_de_profil" alt="Photo de profil" class="profile-image">
+      </div>
+      <span class="image-label">Photo de profil</span>
+      <input type="file" (change)="onProfileImageChange($event)" class="form-control file-upload">
+  </div>
+
+  <!-- Conteneur du formulaire de mise à jour -->
+  <div class="update-container">
+      
+    <h1 class="update-title clickable" (click)="toggleUpdateInfoForm()">Modifier mes informations personnelles</h1>
+  
+      <!-- Formulaire pour mise à jour des informations personnelles -->
+   
+        <form *ngIf="showUpdateInfoForm" (ngSubmit)="onUpdateInfo(infoForm.value)" #infoForm="ngForm" class="update-form">
+        <div class="form-group">
+              <label for="Nom">Nom</label>
+              <input type="text" id="Nom" name="Nom" [(ngModel)]="user.Nom" required class="form-control">
+          </div>
+          
+          <div class="form-group">
+              <label for="Prenom">Prénom</label>
+              <input type="text" id="Prenom" name="Prenom" [(ngModel)]="user.Prenom" required class="form-control">
+          </div>
+           
+          <div class="form-group">
+            <label for="currentPassword">Mot de passe actuel</label>
+            <input type="password" id="currentPassword" name="currentPassword" [(ngModel)]="user.currentPassword" required class="form-control">
+          </div>
+          
+          
+          <button type="submit" [disabled]="!infoForm.valid" class="update-button">Mettre à jour les infos</button>
+      </form>
+
+      <h1 class="update-title clickable" (click)="toggleUpdateStatusForm()">Modifier mon statut</h1>
+     
+      <!-- Formulaire pour mise à jour du statut -->
+      <form *ngIf="showUpdateStatusForm" (ngSubmit)="onUpdateStatus(statusForm.value)" #statusForm="ngForm" class="update-form">
+        <!-- <h1 class="update-title">Modifier mon statut </h1> -->
+        <div class="form-group">
+            <label for="Statut">Statut</label>
+            <select id="Statut" name="Statut" [(ngModel)]="user.Statut" class="form-control">
+                <option value="En ligne">En ligne</option>
+                <option value="Hors ligne">Hors ligne</option>
+                <option value="Ne pas déranger">Ne pas déranger</option>
+                <option value="Invisible">Invisible</option>
+            </select>
+        </div>
+        <button type="submit" class="update-button">Mettre à jour le statut</button>
+    </form>
+
+    <h1 class="update-title clickable" (click)="toggleChangePasswordForm()">Modifier mon mot de passe</h1>
+
+  <form *ngIf="showChangePasswordForm" (ngSubmit)="onChangePassword(passwordForm)" #passwordForm="ngForm" class="update-form">
+    <!-- <h1 class="update-title">Modifier mon mot de passe </h1> -->
+  <div class="form-group">
+      <label for="currentPassword">Mot de passe actuel</label>
+      <input type="password" id="currentPassword" name="oldPassword" ngModel required class="form-control">
+  </div>
+  
+  <div class="form-group">
+      <label for="newPassword">Nouveau mot de passe</label>
+      <input type="password" id="newPassword" name="newPassword" ngModel required class="form-control">
+  </div>
+  
+  <div class="form-group">
+      <label for="confirmPassword">Confirmer le nouveau mot de passe</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" ngModel required class="form-control">
+  </div>
+  
+  <button type="submit" [disabled]="!passwordForm.valid" class="update-button">Changer le mot de passe</button>
+</form>
+
+<h1 class="update-title clickable" (click)="toggleUpdateSecurityQuestionForm()">Modifier ma question de sécurité</h1>
+<form *ngIf="showUpdateSecurityQuestionForm" (ngSubmit)="onUpdateSecurityQuestion(securityForm)" #securityForm="ngForm" class="update-form">
+  <!-- <h1 class="update-title">Modifier ma question de sécurité </h1> -->
+  <div class="form-group">
+    <label for="securityQuestion">Question de Sécurité</label>
+    <select id="securityQuestion" name="securityQuestion" [(ngModel)]="selectedQuestion" required class="form-control">
+      <option *ngFor="let question of securityQuestions" [value]="question">{{ question }}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="securityAnswer">Réponse</label>
+    <input type="text" id="securityAnswer" name="securityAnswer" ngModel required class="form-control">
+  </div>
+
+  <button type="submit" [disabled]="!securityForm.valid" class="update-button">Mettre à jour la question</button>
+</form>
+
+
+  </div>
+</div>

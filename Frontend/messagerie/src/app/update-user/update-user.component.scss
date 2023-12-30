@@ -1,0 +1,363 @@
+// // update-user.component.scss
+
+// .update-background {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   min-height: 100vh;
+//   background-color: #27262C;
+//   position: relative;
+//   overflow: hidden;
+
+//   .blue-circle {
+//     position: absolute;
+//     top: -25%;
+//     right: -25%;
+//     background-color: #4044ED;
+//     width: 50vmax;
+//     height: 50vmax;
+//     border-radius: 50%;
+//     z-index: 0;
+//   }
+
+//   .small-blue-circle {
+//     position: absolute;
+//     top: 5%;
+//     right: 5%;
+//     background-color: #93DFFF;
+//     width: 76px;
+//     height: 76px;
+//     border-radius: 50%;
+//     z-index: 1;
+//   }
+//   .profile-image-section {
+//     display: flex; /* Utilise Flexbox pour un layout flexible des éléments enfants. */
+//     flex-direction: column; /* Les éléments enfants sont alignés horizontalement (côte à côte). */
+//     align-items: flex-start; /* Les éléments enfants sont centrés verticalement dans la section. */
+//     margin-left: 0; /* Aucune marge supplémentaire sur le côté gauche. */
+//     margin-right: 50rem; /* Grande marge à droite pour pousser la section loin du formulaire. */
+//     margin-top: 50px; /* Petite marge au-dessus du conteneur pour l'espacement. */
+     
+//     .profile-image-container {
+//       background-color: #d9d9d9; /* Définit une couleur de fond grise pour le conteneur de l'image. */
+//       border-radius: 50%; /* Rend le conteneur de l'image circulaire. */
+//       width: 200px; /* Largeur fixe du conteneur de l'image. */
+//       height: 200px; /* Hauteur fixe du conteneur de l'image, gardant l'aspect carré. */
+//       display: flex; /* Utilise Flexbox pour aligner l'image à l'intérieur du conteneur. */
+//       justify-content: center; /* Centre l'image horizontalement à l'intérieur du conteneur. */
+//       align-items: center; /* Centre l'image verticalement à l'intérieur du conteneur. */
+//       // overflow: hidden; /* Cache toute partie de l'image qui dépasse du conteneur. */
+//       // margin-top: 50px; /* Petite marge au-dessus du conteneur pour l'espacement. */
+     
+      
+//       .profile-image {
+//         border-radius: 50%; /* Rend l'image elle-même circulaire. */
+//         width: 100%; /* L'image occupe toute la largeur du conteneur. */
+//         height: auto; /* La hauteur de l'image s'ajuste automatiquement pour conserver les proportions. */
+//         // margin-top: 50px; /* Petite marge au-dessus du conteneur pour l'espacement. */
+     
+//       }
+//     }
+  
+//     .image-label {
+//       margin-top: 0.5rem; /* Petite marge au-dessus du label pour l'espacement. */
+//       margin-left: 0.5rem; /* Petite marge à gauche du label pour séparer du conteneur de l'image. */
+//       color: white; /* Couleur du texte du label en blanc. */
+//     }
+//   }
+  
+//   .update-container {
+//     z-index: 2;
+//     padding: 2rem;
+//     width: 100%;
+//     max-width: 400px;
+//     text-align: center;
+//     background: rgba(255, 255, 255, 0.1); // Ajuster selon les besoins
+//     border-radius: 10px;
+//     box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+//     margin-top: -250px; 
+    
+
+//     .update-title {
+//       color: white;
+//       margin-bottom: 2rem;
+//       font-size: 2rem;
+//     }
+
+//     .form-group {
+//       margin-bottom: 1.5rem;
+//       position: relative;
+      
+
+//       .form-label {
+//         display: block;
+//         color: #999999;
+//         text-align: left;
+//         margin-bottom: 0.5rem;
+//       }
+
+//       .form-control {
+//         width: 100%;
+//         padding: 0.5rem;
+//         border: none;
+//         border-bottom: 2px solid white;
+//         background-color: transparent;
+//         color: white;
+//         margin-bottom: 1rem;
+
+//         &::placeholder {
+//           color: #999999;
+//         }
+
+//         &:focus {
+//           outline: none;
+//           border-bottom-color: #007BFF;
+//         }
+//       }
+//     }
+
+//     .error {
+//       color: red;
+//       text-align: center;
+//       margin-bottom: 1rem;
+//     }
+
+//     .update-button {
+//       width: 100%;
+//       padding: 0.5rem;
+//       border: none;
+//       background-color: #4044ED;
+//       color: white;
+//       font-size: 1rem;
+//       cursor: pointer;
+//       margin-bottom: 1rem;
+
+//       &:hover {
+//         background-color: darken(#4044ED, 10%);
+//       }
+
+//       &:disabled {
+//         background-color: #6959f7;
+//       }
+//     }
+//   }
+//    // Media queries pour les petits écrans
+//    @media (max-width: 768px) {
+//     .profile-image-section {
+//       margin-right: 1rem; // Réduire davantage la marge sur les petits écrans
+//       .profile-image-container {
+//         width: 150px; // Réduire la taille de l'image de profil
+//         height: 150px;
+//       }
+//     }
+
+//     .blue-circle, .small-blue-circle {
+//       width: 30vmax; // Réduire la taille des cercles
+//       height: 30vmax;
+//     }
+//   }
+
+//   /* update-user.component.scss */
+// .clickable {
+//   cursor: pointer;
+//   user-select: none; /* Empêcher la sélection du texte lors de cliques répétés */
+// }
+
+// .update-title {
+//   color: white;
+//   margin-bottom: 2rem;
+//   font-size: 2rem;
+//   transition: color 0.3s ease, box-shadow 0.3s ease;
+// }
+
+// .update-title:hover, .update-title:focus {
+//   color: #007bff; /* Couleur lors du survol et du focus */
+//   box-shadow: 0px 4px 8px rgba(0, 123, 255, 0.6); /* Ombre portée légère */
+// }
+
+// .update-title:active {
+//   transform: scale(0.98); /* Légère animation de réduction lors du clic */
+// }
+
+// /* Style pour les titres actifs */
+// .update-title.active {
+//   color: #007bff; /* Ou toute autre couleur de votre choix */
+// }
+
+// /* Style supplémentaire pour les petits écrans */
+// @media (max-width: 768px) {
+//   .update-title {
+//     font-size: 1.5rem; /* Taille de police plus petite pour les petits écrans */
+//   }
+// }
+
+
+// }
+
+// update-user.component.scss
+
+.update-background {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #27262C;
+  position: relative;
+  overflow: hidden;
+
+  .blue-circle {
+    position: absolute;
+    top: -25%;
+    right: -25%;
+    background-color: #4044ED;
+    width: 50vmax;
+    height: 50vmax;
+    border-radius: 50%;
+    z-index: 0;
+  }
+
+  .small-blue-circle {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    background-color: #93DFFF;
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    z-index: 1;
+  }
+
+  .profile-image-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 50rem;
+    margin-top: 50px;
+    .profile-image-container {
+      background-color: #d9d9d9;
+      border-radius: 50%;
+      width: 200px;
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .profile-image {
+        border-radius: 50%;
+        width: 100%;
+        height: auto;
+      }
+    }
+    .image-label {
+      margin-top: 0.5rem;
+      color: white;
+    }
+  }
+
+  .update-container {
+    z-index: 2;
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    margin-top: -250px;
+    .update-title {
+      color: white;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+      .form-label {
+        display: block;
+        color: #999999;
+        text-align: left;
+        margin-bottom: 0.5rem;
+      }
+      .form-control {
+        width: 100%;
+        padding: 0.5rem;
+        border: none;
+        border-bottom: 2px solid white;
+        background-color: transparent;
+        color: white;
+        margin-bottom: 1rem;
+        &::placeholder {
+          color: #999999;
+        }
+        &:focus {
+          outline: none;
+          border-bottom-color: #007BFF;
+        }
+      }
+    }
+    .error {
+      color: red;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .update-button {
+      width: 100%;
+      padding: 0.5rem;
+      border: none;
+      background-color: #4044ED;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-bottom: 1rem;
+      &:hover {
+        background-color: darken(#4044ED, 10%);
+      }
+      &:disabled {
+        background-color: #6959f7;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .profile-image-section {
+      margin-right: 1rem;
+      .profile-image-container {
+        width: 150px;
+        height: 150px;
+      }
+    }
+    .blue-circle, .small-blue-circle {
+      width: 30vmax;
+      height: 30vmax;
+    }
+  }
+}
+
+.clickable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.update-title {
+  color: white;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  transition: color 0.3s ease, box-shadow 0.3s ease;
+  &:hover, &:focus {
+    color: #007bff;
+    box-shadow: 0px 4px 8px rgba(0, 123, 255, 0.6);
+  }
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.update-title.active {
+  color: #007bff;
+}
+
+@media (max-width: 768px) {
+  .update-title {
+    font-size: 1.5rem;
+  }
+}

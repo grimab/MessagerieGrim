@@ -1,0 +1,87 @@
+<!-- user-list.component.html -->
+
+<body>
+
+<!-- Messages d'erreur ou de succès -->
+<div *ngIf="message" class="alert-message">{{ message }}</div>
+
+<!-- Boutons de navigation -->
+<div class="tabs">
+    <button (click)="selectTab('all')" [class.active]="selectedTab === 'all'">Tout les contacts</button>
+    <button (click)="selectTab('friends')" [class.active]="selectedTab === 'friends'">Mes amis</button>
+    <button (click)="selectTab('blocked')" [class.active]="selectedTab === 'blocked'">Personnes bloquées</button>
+    <button (click)="selectTab('pending')" [class.active]="selectedTab === 'pending'">Demandes de contact en attente</button>
+  </div>
+
+<div *ngIf="selectedTab === 'all'" class="user-list-box">
+    <h2>tout les contact</h2>
+    <div *ngIf="allUsers.length; else noUsersTemplate">
+      <div *ngFor="let user of allUsers" class="user-item">
+        <div class="ellipse"></div>
+        <div class="user-name">{{ user.Nom }} {{ user.Prenom }}</div>
+        <div class="user-actions">
+          <button (click)="addFriend(user.ID_User)">Ajouter <fa-icon [icon]="['fas', 'user-plus']"></fa-icon></button>
+          <button (click)="blockContact(user.ID_User)">Bloquer <fa-icon [icon]="['fas', 'ban']"></fa-icon></button>
+        </div>
+        <hr class="separator" />
+      </div>
+    </div>
+    <ng-template #noUsersTemplate>
+      <p class="no-users">Aucun utilisateur trouvé.</p>
+    </ng-template>
+  </div>
+
+<div *ngIf="selectedTab === 'friends'" class="friend-list-box">
+    <h2>Mes amis</h2>
+    <div *ngIf="myFriends.length; else noFriendsTemplate">
+      <div *ngFor="let friend of myFriends" class="friend-item">
+        <div class="ellipse"></div>
+        <div class="friend-name">{{ friend.Nom }} {{ friend.Prenom }}</div>
+        <div class="friend-actions">
+          <button (click)="removeFriend(friend.ID_User)">Supprimer <fa-icon [icon]="['fas', 'user-minus']"></fa-icon></button>
+          <button (click)="blockContact(friend.ID_User)">Bloquer <fa-icon [icon]="['fas', 'ban']"></fa-icon></button>
+        </div>
+        <hr class="separator" />
+      </div>
+    </div>
+    <ng-template #noFriendsTemplate>
+      <p class="no-friends">Aucun ami trouvé.</p>
+    </ng-template>
+  </div>
+
+<div *ngIf="selectedTab === 'blocked'" class="blocked-list-box">
+    <h2>Personnes bloquées</h2>
+    <div *ngIf="blockedUsers.length; else noBlockedTemplate">
+      <div *ngFor="let blocked of blockedUsers" class="blocked-item">
+        <div class="ellipse"></div>
+        <div class="blocked-name">{{ blocked.Nom }} {{ blocked.Prenom }}</div>
+        <div class="blocked-actions">
+          <button (click)="removeFriend(blocked.ID_User)">Débloquer <fa-icon [icon]="['fas', 'unlock']"></fa-icon></button>
+        </div>
+        <hr class="separator" />
+      </div>
+    </div>
+    <ng-template #noBlockedTemplate>
+      <p class="no-blocked">Aucune personne bloquée.</p>
+    </ng-template>
+  </div>
+
+<div *ngIf="selectedTab === 'pending'" class="pending-requests-box">
+    <h2>Demandes de contact en attente</h2>
+    <div *ngIf="pendingRequests.length; else noPendingRequestsTemplate">
+      <div *ngFor="let request of pendingRequests" class="pending-request-item">
+        <div class="ellipse"></div>
+        <div class="pending-request-name">{{ request.Nom }} {{ request.Prenom }}</div>
+        <div class="pending-request-actions">
+          <button (click)="acceptContactRequest(request.ID_User)">Accepter <fa-icon [icon]="['fas', 'check']"></fa-icon></button>
+          <button (click)="removeFriend(request.ID_User)">Refuser <fa-icon [icon]="['fas', 'xmark']"></fa-icon></button>
+        </div>
+        <hr class="separator" />
+      </div>
+    </div>
+    <ng-template #noPendingRequestsTemplate>
+      <p class="no-pending-requests">Aucune demande de contact en attente.</p>
+    </ng-template>
+  </div>
+
+</body>

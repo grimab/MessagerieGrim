@@ -1,0 +1,50 @@
+
+
+// @import '../login/login.component.scss';
+// .security-question-background {
+//     @extend .login-background; // Hérite du style de login-background
+  
+//     .security-question-container {
+//       @extend .login-container; // Hérite du style de login-container
+  
+//       .security-question-title {
+//         @extend .login-title; // Hérite du style de login-title
+//       }
+  
+//       .security-question-button {
+//         @extend .login-button; // Hérite du style de login-button
+//       }
+//     }
+//   }
+  
+
+@import '../login/login.component.scss';
+
+.security-question-background {
+  @extend .login-background;
+
+  .security-question-container {
+    @extend .login-container;
+
+    .security-question-title {
+      @extend .login-title;
+    }
+
+    .security-question-button {
+      @extend .login-button;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .security-question-container {
+      // Hérite des modifications responsives de .login-container
+      .security-question-title {
+        font-size: 2rem; // Taille de police ajustée pour les petits écrans
+      }
+
+      .security-question-button {
+        // Hérite des modifications responsives de .login-button
+      }
+    }
+  }
+}

@@ -1,0 +1,166 @@
+<!-- 
+
+<div class="register-container">
+    <div class="register-box">
+        <h2>Inscription</h2>
+        <form (ngSubmit)="onSubmit(registerForm.value)" #registerForm="ngForm">
+
+            <div class="form-group">
+                <label for="Nom">Nom <span class="required">*</span></label>
+                <input type="text" id="Nom" name="Nom" ngModel required>
+            </div>
+
+            <div class="form-group">
+                <label for="Prenom">Prénom <span class="required">*</span></label>
+                <input type="text" id="Prenom" name="Prenom" ngModel required>
+            </div>
+
+            <div class="form-group">
+                <label for="Email">Email <span class="required">*</span></label>
+                <input type="email" id="Email" name="Email" ngModel required>
+            </div>
+
+           
+            <div class="form-group">
+                <label for="hashedPassword">Mot de passe <span class="required">*</span></label>
+                <input type="password" id="hashedPassword" name="hashedPassword" [(ngModel)]="hashedPassword" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="confirmPassword">Confirmez le mot de passe <span class="required">*</span></label>
+                <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword" required>
+                <div *ngIf="hashedPassword && confirmPassword && !passwordsMatch()" class="alert alert-danger">
+                    Les mots de passe doivent être identiques.
+                </div>
+            </div>
+            
+
+            <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+
+            <button type="submit" [disabled]="!registerForm.valid">S'inscrire</button>
+        </form>
+    </div>
+    <p class="switch-form">Avez-vous déjà un compte? <a routerLink="/login" class="switch-link">Connectez-vous!</a></p>
+
+</div> -->
+
+
+<!-- <div class="register-background">
+   
+    <div class="blue-circle"></div>
+    <div class="small-blue-circle"></div>
+
+
+    <div class="register-container">
+        <h1 class="register-title">INSCRIPTION</h1>
+
+        <form (ngSubmit)="onSubmit(registerForm.value)" #registerForm="ngForm">
+            <div class="form-group">
+                <label for="Nom" class="form-label">Nom <span class="required">*</span></label>
+                <input type="text" id="Nom" name="Nom" ngModel required class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="Prenom" class="form-label">Prénom <span class="required">*</span></label>
+                <input type="text" id="Prenom" name="Prenom" ngModel required class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="Email" class="form-label">Email <span class="required">*</span></label>
+                <input type="email" id="Email" name="Email" ngModel required class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="hashedPassword" class="form-label">Mot de passe <span class="required">*</span></label>
+                <input type="password" id="hashedPassword" name="hashedPassword" ngModel required class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <label for="confirmPassword" class="form-label">Confirmez le mot de passe <span class="required">*</span></label>
+                <input type="password" id="confirmPassword" name="confirmPassword" ngModel required class="form-control">
+                <div *ngIf="hashedPassword && confirmPassword && !passwordsMatch()" class="error">
+                    Les mots de passe doivent être identiques.
+                </div>
+            </div>
+
+            <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+
+            <button type="submit" [disabled]="!registerForm.valid" class="register-button">S'inscrire</button>
+        </form>
+        <p class="switch-form">Avez-vous déjà un compte? <a routerLink="/login" class="switch-link">Connectez-vous!</a></p>
+    </div>
+</div> -->
+
+
+<div class="register-background">
+    <!-- Background shapes and elements -->
+    <div class="blue-circle"></div>
+    <div class="small-blue-circle"></div>
+
+    <!-- Register Form -->
+    <div class="register-container">
+        <h1 class="register-title">INSCRIPTION</h1>
+
+        <form (ngSubmit)="onSubmit(registerForm.value)" #registerForm="ngForm" novalidate>
+            <div class="form-group">
+                <label for="Nom" class="form-label">Nom <span class="required">*</span></label>
+                <input type="text" id="Nom" name="Nom" ngModel required minlength="2" class="form-control">
+                <div *ngIf="registerForm.controls['Nom']?.errors?.['required'] && registerForm.controls['Nom']?.touched" class="error">
+                    Le nom est requis.
+                </div>
+                <div *ngIf="registerForm.controls['Nom']?.errors?.['minlength'] && registerForm.controls['Nom']?.touched" class="error">
+                    Le nom doit comporter au moins 2 caractères.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Prenom" class="form-label">Prénom <span class="required">*</span></label>
+                <input type="text" id="Prenom" name="Prenom" ngModel required minlength="2" class="form-control">
+                <div *ngIf="registerForm.controls['Prenom']?.errors?.['required'] && registerForm.controls['Prenom']?.touched" class="error">
+                    Le prénom est requis.
+                </div>
+                <div *ngIf="registerForm.controls['Prenom']?.errors?.['minlength'] && registerForm.controls['Prenom']?.touched" class="error">
+                    Le prénom doit comporter au moins 2 caractères.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Email" class="form-label">Email <span class="required">*</span></label>
+                <input type="email" id="Email" name="Email" ngModel required email class="form-control">
+                <div *ngIf="registerForm.controls['Email']?.errors?.['required'] && registerForm.controls['Email']?.touched" class="error">
+                    L'email est requis.
+                </div>
+                <div *ngIf="registerForm.controls['Email']?.errors?.['email'] && registerForm.controls['Email']?.touched" class="error">
+                    L'email n'est pas valide.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="hashedPassword" class="form-label">Mot de passe <span class="required">*</span></label>
+                <input type="password" id="hashedPassword" name="hashedPassword" ngModel required class="form-control">
+                <div *ngIf="registerForm.controls['hashedPassword']?.errors?.['required'] && registerForm.controls['hashedPassword']?.touched" class="error">
+                    Un mot de passe est requis.
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="confirmPassword" class="form-label">Confirmez le mot de passe <span class="required">*</span></label>
+                <input type="password" id="confirmPassword" name="confirmPassword" ngModel required class="form-control">
+                <div *ngIf="registerForm.controls['confirmPassword']?.errors?.['required'] && registerForm.controls['confirmPassword']?.touched" class="error">
+                    La confirmation du mot de passe est requise.
+                </div>
+                <div *ngIf="hashedPassword !== confirmPassword && registerForm.controls['confirmPassword']?.touched" class="error">
+                    Les mots de passe doivent être identiques.
+                </div>
+            </div>
+
+            <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+
+            <button type="submit" [disabled]="!registerForm.valid" class="register-button">S'inscrire</button>
+        </form>
+        <p class="switch-form">Avez-vous déjà un compte? <a routerLink="/login" class="switch-link">Connectez-vous!</a></p>
+    </div>
+</div>
+  
+
+<!-- todo : mot de passe identique et eventuelle autre secu sur les donner en entre  -->

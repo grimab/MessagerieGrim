@@ -1,0 +1,231 @@
+// // profile.component.scss
+
+
+
+// .profile-page {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   height: 100vh;
+//   background-color: #27262C;
+//   position: relative;
+//   overflow: hidden;
+
+
+//   .profile-container {
+//     z-index: 2;
+//     display: flex;
+//     justify-content: center;
+//     align-items: flex-start; // Pour aligner avec le haut
+//     padding-top: 5vh; // Ajustez en fonction de la hauteur de votre en-tête
+//     width: 100%;
+//     max-width: 900px; // Ajustez selon la largeur souhaitée pour la disposition
+
+//     .profile-image-section {
+//       display: flex;
+//       flex-direction: column;
+//       align-items: center;
+//       margin-right: 4rem;
+
+//       .profile-image-container {
+//         background-color: #d9d9d9;
+//         border-radius: 50%;
+//         width: 200px;
+//         height: 200px;
+//         display: flex;
+//         justify-content: center;
+//         align-items: center;
+
+//         .profile-image {
+//           border-radius: 50%;
+//           width: 100%;
+//           height: auto;
+//         }
+//       }
+
+//       .image-label {
+//         margin-top: 0.5rem;
+//         color: white;
+//       }
+//     }
+
+//     .profile-info-section {
+//       flex-grow: 1;
+//       border-left: 2px solid #4e4e50;
+//       padding-left: 4rem;
+
+//       .info-title {
+//         color: white;
+//         margin-bottom: 2rem;
+//         font-size: 3rem;
+//       }
+
+//       .info {
+//         display: flex;
+//         flex-direction: column;
+//         margin-bottom: 1rem;
+
+//         .label {
+//           font-size: 1.2rem;
+//           color: #999;
+//         }
+
+//         .value {
+//           font-size: 1.5rem;
+//           font-weight: bold;
+//           margin-top: 0.5rem;
+//           margin-bottom: 0.5rem;
+//           color: white;
+//         }
+//       }
+
+//       .info-update-button {
+//         button {
+//           background-color: #4044ed;
+//           border: none;
+//           color: white;
+//           padding: 0.5rem 1rem;
+//           font-size: 1rem;
+//           cursor: pointer;
+//           transition: background-color 0.3s ease;
+
+//           &:hover {
+//             background-color: darken(#4044ed, 10%);
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
+
+// profile.component.scss
+
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #27262C;
+  position: relative;
+  overflow: hidden;
+
+  .profile-container {
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 5vh;
+    width: 100%;
+    max-width: 900px;
+
+    .profile-image-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-right: 4rem;
+
+      .profile-image-container {
+        background-color: #d9d9d9;
+        border-radius: 50%;
+        width: 200px;
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .profile-image {
+          border-radius: 50%;
+          width: 100%;
+          height: auto;
+        }
+      }
+
+      .image-label {
+        margin-top: 0.5rem;
+        color: white;
+      }
+    }
+
+    .profile-info-section {
+      flex-grow: 1;
+      border-left: 2px solid #4e4e50;
+      padding-left: 4rem;
+
+      .info-title {
+        color: white;
+        margin-bottom: 2rem;
+        font-size: 3rem;
+      }
+
+      .info {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+
+        .label {
+          font-size: 1.2rem;
+          color: #999;
+        }
+
+        .value {
+          font-size: 1.5rem;
+          font-weight: bold;
+          margin-top: 0.5rem;
+          margin-bottom: 0.5rem;
+          color: white;
+        }
+      }
+
+      .info-update-button {
+        button {
+          background-color: #4044ed;
+          border: none;
+          color: white;
+          padding: 0.5rem 1rem;
+          font-size: 1rem;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+
+          &:hover {
+            background-color: darken(#4044ed, 10%);
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .profile-container {
+      flex-direction: column;
+      padding-top: 2vh;
+      align-items: center;
+
+      .profile-image-section {
+        margin-right: 0;
+        margin-bottom: 2rem;
+      }
+
+      .profile-info-section {
+        border-left: none;
+        padding-left: 0;
+
+        .info-title {
+          font-size: 2rem;
+        }
+
+        .info {
+          .label, .value {
+            font-size: 1.2rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@function darken($color, $percent) {
+  @return mix(black, $color, $percent);
+}

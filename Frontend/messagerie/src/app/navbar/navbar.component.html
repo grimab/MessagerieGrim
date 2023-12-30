@@ -1,0 +1,49 @@
+<!-- navbar.component.html
+   -->
+
+   <!-- <nav class="navbar">
+    <div class="navbar-brand">MaApp</div>
+    <ul class="navbar-nav">
+        <li><a routerLink="/home"><fa-icon [icon]="['fas', 'house']"></fa-icon> Accueil</a></li>
+        <li *ngIf="!isLoggedIn"><a routerLink="/contact">Liste des Contacts</a></li>
+       
+        <li *ngIf="!isLoggedIn">
+            <a routerLink="/profile">Profil</a>
+            <ul>
+                <li><a routerLink="/update">Mettre à Jour</a></li>
+            </ul>
+        </li>
+        <li *ngIf="!isLoggedIn"><a routerLink="/login">Connexion</a></li>
+        <li *ngIf="!isLoggedIn"><a (click)="logout()">Déconnexion <fa-icon [icon]="['fas', 'right-to-bracket']"></fa-icon></a></li>
+    </ul>
+</nav> -->
+
+
+<nav class="navbar">
+    <div class="navbar-brand">MaApp</div>
+    <ul class="navbar-nav">
+      <!-- <li><a routerLink="/home"><fa-icon [icon]="['fas', 'house']"></fa-icon> Accueil</a></li> -->
+
+      <li *ngIf="isLoggedIn"><a routerLink="/home"><fa-icon [icon]="['fas', 'house']"></fa-icon> Accueil</a></li>
+
+      
+      <!-- Afficher seulement si l'utilisateur est connecté -->
+      <li *ngIf="isLoggedIn"><a routerLink="/contact">Liste des Contacts</a></li>
+      
+      <!-- Afficher seulement si l'utilisateur est connecté -->
+      <li *ngIf="isLoggedIn">
+        <a routerLink="/profile">Profil</a>
+        <ul>
+          <li><a routerLink="/update">parametre</a></li>
+        </ul>
+      </li>
+      
+      <!-- Afficher seulement si l'utilisateur n'est pas connecté -->
+      <li *ngIf="!isLoggedIn"><a routerLink="/login">Connexion</a></li>
+      <li *ngIf="!isLoggedIn"><a routerLink="/register">Inscription</a></li>
+      
+      <!-- Afficher seulement si l'utilisateur est connecté -->
+      <li *ngIf="isLoggedIn"><a (click)="logout()">Déconnexion <fa-icon [icon]="['fas', 'right-to-bracket']"></fa-icon></a></li>
+    </ul>
+  </nav>
+  

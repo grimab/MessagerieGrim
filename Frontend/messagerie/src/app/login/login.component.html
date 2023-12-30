@@ -1,0 +1,36 @@
+    <!-- login.component.html -->
+
+
+<div class="login-background">
+    <!-- Background shapes and elements -->
+    <div class="blue-circle"></div>
+    <div class="small-blue-circle"></div>
+  
+
+    <!-- Login Form -->
+    <div class="login-container">
+        <h1 class="login-title">LOGIN</h1>
+
+        <form (ngSubmit)="onSubmit(loginForm.value)" #loginForm="ngForm">
+            <div class="form-group">
+                <label for="Email" class="form-label">Email <span class="required">*</span></label>
+                <input type="email" id="Email" name="Email" ngModel required class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="hashedPassword" class="form-label">Mot de passe</label>
+                <input [type]="isPasswordVisible ? 'text' : 'password'" id="hashedPassword" name="hashedPassword" ngModel required class="form-control">
+                <i class="show-password-icon fa" [ngClass]="isPasswordVisible ? 'fa-eye' : 'fa-eye-slash'" (click)="togglePasswordVisibility()"></i>
+            </div>
+
+            <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+
+            <button type="submit" [disabled]="!loginForm.valid" class="login-button">Se connecter</button>
+
+            <div class="login-links">
+                <p class="switch-form">Mot de passe oublié? <a routerLink="/reset-password" class="switch-link">Réinitialisez-le ici!</a></p>
+                <p class="switch-form">Pas encore de compte? <a routerLink="/register" class="switch-link">Inscrivez-vous!</a></p>
+            </div>
+        </form>
+    </div>
+</div>

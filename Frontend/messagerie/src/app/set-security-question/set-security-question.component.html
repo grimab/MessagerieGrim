@@ -1,0 +1,51 @@
+<!-- set-security-question.component.html -->
+
+<!-- 
+<div class="container">
+    <h2>Définir la question de sécurité</h2>
+    <form (submit)="submitSecurityQuestion()">
+        <div class="form-group">
+            <label for="securityQuestion">Choisissez une question de sécurité :</label>
+            <select id="securityQuestion" [(ngModel)]="selectedQuestion" name="securityQuestion">
+                <option *ngFor="let question of securityQuestions" [value]="question">{{ question }}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="securityAnswer">Votre réponse :</label>
+            <input type="text" id="securityAnswer" [(ngModel)]="securityAnswer" name="securityAnswer" required>
+        </div>
+        <button type="submit">Définir la question de sécurité</button>
+        <div class="notification" *ngIf="showNotification" [class.success]="notificationType === 'success'" [class.error]="notificationType === 'error'">
+            {{ notificationMessage }}
+        </div>
+    </form>
+</div> -->
+
+
+<div class="security-question-background">
+    <!-- Background shapes and elements -->
+    <div class="blue-circle"></div>
+    <div class="small-blue-circle"></div>
+
+    <!-- Security Question Form -->
+    <div class="security-question-container">
+        <h1 class="security-question-title">Définir la question de sécurité</h1>
+
+        <form (submit)="submitSecurityQuestion()">
+            <div class="form-group">
+                <label for="securityQuestion" class="form-label">Choisissez une question de sécurité :</label>
+                <select id="securityQuestion" [(ngModel)]="selectedQuestion" name="securityQuestion" class="form-control">
+                    <option *ngFor="let question of securityQuestions" [value]="question">{{ question }}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="securityAnswer" class="form-label">Votre réponse :</label>
+                <input type="text" id="securityAnswer" [(ngModel)]="securityAnswer" name="securityAnswer" required class="form-control">
+            </div>
+            <button type="submit" class="security-question-button">Définir la question de sécurité</button>
+            <div class="notification" *ngIf="showNotification" [class.success]="notificationType === 'success'" [class.error]="notificationType === 'error'">
+                {{ notificationMessage }}
+            </div>
+        </form>
+    </div>
+</div>

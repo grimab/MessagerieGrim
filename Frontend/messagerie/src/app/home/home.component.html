@@ -1,0 +1,156 @@
+<!-- home.component.html -->
+<div class="home-container">
+  <div class="sidebar">
+    <div
+      class="menu-item messages-individuelle"
+      (click)="selectIndividualMessages()"
+    >
+      <!-- <fa-icon [icon]="['fas', 'comment-dots']"></fa-icon> -->
+      <span>Messages individuels</span>
+      <fa-icon
+        [icon]="['fas', 'circle-plus']"
+        (click)="openNewConversationForm()"
+      ></fa-icon>
+      <!-- <fa-icon [icon]="['fas', 'circle-plus']"></fa-icon> -->
+    </div>
+    <!-- Individual messages list -->
+    <div *ngIf="individualSelected" class="conversation-list">
+      <div
+        class="conversation"
+        *ngFor="let conversation of individualConversations"
+        (click)="selectConversation(conversation)"
+      >
+        <div class="title">
+          {{ conversation.Utilisateur2.Nom }}
+          {{ conversation.Utilisateur2.Prenom }}
+
+          <fa-icon
+            [icon]="['fas', 'trash-can']"
+            (click)="deleteConversation(conversation.ID_Conversation)"
+          ></fa-icon>
+        </div>
+        <div class="last-message">
+          {{ conversation.Dernier_message || "Pas de message" }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Formulaire pour nouvelle conversation -->
+    <div *ngIf="showNewConversationForm" class="new-conversation-form">
+      <h3>Créer une nouvelle conversation</h3>
+      <div class="friend-list">
+        <!-- Boucle pour afficher la liste des amis -->
+        <div *ngFor="let friend of friends">
+          <label>
+            <input
+              type="radio"
+              name="selectedFriend"
+              [value]="friend.id"
+              (change)="onSelectFriend(friend.ID_User)"
+            />
+            {{ friend.Nom }} {{ friend.Prenom }}
+          </label>
+        </div>
+      </div>
+      <button (click)="createNewConversation()">Créer</button>
+    </div>
+
+    <div class="menu-item messages-groupes" (click)="selectGroupMessages()">
+      <span>Messages groupes</span>
+      <fa-icon [icon]="['fas', 'circle-plus']"></fa-icon>
+    </div>
+    <!-- Group messages list -->
+    <div *ngIf="groupSelected" class="conversation-list">
+      <div class="conversation" *ngFor="let conversation of groupConversations">
+        <div class="title">{{ conversation.name }}</div>
+        <div class="last-message">{{ conversation.lastMessage }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div *ngIf="selectedConversation">
+      <!-- En-tête avec le nom et le prénom -->
+      <header class="conversation-header">
+        <h3>
+          Discution avec {{ selectedConversation.Utilisateur2.Nom }}
+          {{ selectedConversation.Utilisateur2.Prenom }}
+        </h3>
+      </header>
+
+      <!-- Zone d'affichage des messages -->
+      <!-- <section class="messages-container">
+        <div *ngFor="let message of selectedMessages; trackBy: trackByFn" 
+             [ngClass]="{'sent': message.isSentByCurrentUser, 'received': !message.isSentByCurrentUser}">
+          <article class="message-content">
+           
+            <div class="message-details">
+              <span class="message-author">{{ message.isSentByCurrentUser ? 'Vous' : (message.Utilisateur.Prenom + ' ' + message.Utilisateur.Nom) }}</span>
+              <span class="message-timestamp">{{ message.Date_et_heure | date: 'medium' }}</span>
+            </div>
+            <p>{{ message.Contenu_du_message }}</p>
+          </article>
+        </div>
+      </section> -->
+
+      <!-- Zone d'affichage des messages -->
+      <section class="messages-container" #messagesContainer>
+        <div
+          *ngFor="let message of selectedMessages; trackBy: trackByFn"
+          [ngClass]="{
+            sent: message.isSentByCurrentUser,
+            received: !message.isSentByCurrentUser
+          }"
+        >
+          <article class="message-content">
+            <div class="message-details">
+              <span class="message-author">
+                {{
+                  message.isSentByCurrentUser
+                    ? "Vous"
+                    : message.Utilisateur?.Prenom +
+                        " " +
+                        message.Utilisateur?.Nom || "Utilisateur inconnu"
+                }}
+              </span>
+              <span class="message-timestamp">
+                {{
+                  message.Date_et_heure
+                    ? (message.Date_et_heure | date : "medium")
+                    : "Date inconnue"
+                }}
+              </span>
+            </div>
+            <p>{{ message.Contenu_du_message || "Message vide" }}</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Zone de saisie pour envoyer des messages -->
+      <footer class="message-input-container">
+        <input
+          type="text"
+          class="message-input"
+          [(ngModel)]="newMessage"
+          aria-label="Tapez votre message ici"
+        />
+        <button
+          class="send-message-button"
+          (click)="sendMessage()"
+          aria-label="Envoyer le message"
+        >
+          Envoyer
+        </button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Notification des succès et erreurs -->
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+  </div>
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+</div>

@@ -1,0 +1,45 @@
+<!-- profile.component.html -->
+<div class="profile-page">
+    <!-- Cercles décoratifs -->
+   
+    <div class="small-blue-circle"></div>
+  
+    <div class="profile-container">
+      
+      <div class="profile-image-section">
+        <div class="profile-image-container">
+          <img *ngIf="user.Image_de_profil" [src]="user.Image_de_profil" alt="Photo de profil" class="profile-image">
+        </div>
+        <span class="image-label">photo de profile</span>
+      </div>
+      
+      <div class="profile-info-section">
+        <h2 class="info-title">mes informations personnel</h2>
+        <div class="info">
+          <span class="label">Nom</span>
+          <span class="value">{{ user.Nom }}</span>
+        </div>
+        <div class="info">
+          <span class="label">Prénom</span>
+          <span class="value">{{ user.Prenom }}</span>
+        </div>
+        <div class="info">
+          <span class="label">E-mail</span>
+          <span class="value">{{ user.Email }}</span>
+        </div>
+        <div class="info">
+          <span class="label">Date de dernière connexion</span>
+          <span class="value">{{ user.Date_de_derniere_connexion | date: 'HH:mm dd MMM yyyy' }}</span>
+        </div>
+        <div class="info">
+          <span class="label">Statut</span>
+          <span class="value">{{ user.Statut }}</span>
+        </div>
+        <div class="info-update-button">
+          <button (click)="navigateToUpdate()">Modifier Mes informations</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  

@@ -1,0 +1,297 @@
+// * {
+//     box-sizing: border-box;
+//     margin: 0;
+//     padding: 0;
+//     font-family: 'Arial', sans-serif;
+//   }
+  
+//   .alert-message {
+//     color: #fff;
+//     background-color: #f44336; // Rouge pour les erreurs
+//     padding: 10px;
+//     margin-bottom: 15px;
+//     border-radius: 4px;
+//     text-align: center;
+//   }
+  
+//   .tabs {
+//     display: flex;
+//     justify-content: space-around; // Répartissez les boutons également
+//     background-color: rgba(21, 27, 157, 0.52); // Couleur d'arrière-plan spécifiée dans la maquette
+//     padding: 10px 0;
+//     border-radius: 20px; // Arrondi des angles pour le container
+//     margin: auto; // Centrer la barre de navigation dans la vue
+//     width: 1157px; // Largeur spécifique pour les onglets
+//     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); // Ombre douce pour donner un effet de profondeur
+  
+//     button {
+//       background: none;
+//       border: 1px solid transparent; // Ajoutez un bord transparent pour éviter des changements de taille lors de l'activation
+//       color: #fff; // Texte blanc
+//       padding: 10px 20px;
+//       border-radius: 20px; // Arrondi des angles pour les boutons
+//       cursor: pointer;
+//       transition: background-color 0.3s, border-color 0.3s;
+//       font-size: 1em; // Taille de la police standard
+  
+//       &:hover {
+//         border-color: #fff; // Bord blanc au survol pour souligner l'interaction
+//       }
+  
+//       &.active {
+//         background-color: #555; // Fond plus clair pour l'onglet actif
+//         border-color: #555; // Assurez-vous que la bordure a la même couleur que le fond pour les onglets actifs
+//       }
+//     }
+//   }
+  
+//   body {
+//     background-color: #1E1E1E; // Remplacez cette valeur hexadécimale par la couleur de fond souhaitée
+//   }
+  
+//   .user-list-box,
+//   .friend-list-box,
+//   .blocked-list-box,
+//   .pending-requests-box {
+//     background-color: rgba(140, 165, 214, 0.19); // Couleur de fond avec opacité à 19%
+//     border-radius: 50px; // Coins arrondis
+//     width: 1157px; // Largeur fixe
+//     max-height: 618px; // Hauteur maximale
+//     margin: auto; // Centrer dans la page
+//     padding: 20px; // Espacement intérieur
+//     overflow-y: auto; // Permettre le défilement vertical si le contenu dépasse
+//     position: relative; // Pour positionner les enfants absolument à l'intérieur
+//     margin-top: 10vh; // Espacement par rapport au haut de la page
+//   }
+  
+//   .user-item,
+//   .friend-item,
+//   .blocked-item,
+//   .pending-request-item {
+//     display: flex;
+//     align-items: center;
+//     padding: 10px 0;
+//     border-bottom: 1px solid #444; // Séparateur plus clair
+//   }
+  
+//   .ellipse {
+//     width: 40px;
+//     height: 40px;
+//     background-color: #fff;
+//     border-radius: 50%;
+//     margin-right: 15px;
+//   }
+  
+//   .user-name,
+//   .friend-name,
+//   .blocked-name,
+//   .pending-request-name {
+//     flex-grow: 1;
+//     color: #fff;
+//   }
+  
+//   .user-actions,
+//   .friend-actions,
+//   .blocked-actions,
+//   .pending-request-actions {
+//     display: flex;
+//     justify-content: space-around;
+//   }
+  
+//   button {
+//     background-color: #5F6A7D; // "8B8589" ou bien "5F6A7D"
+//     color: white;
+//     border: none;
+//     border-radius: 20px; // Boutons arrondis
+//     padding: 10px 15px;
+//     cursor: pointer;
+//     transition: background-color 0.3s;
+  
+//     &:hover {
+//       background-color: #45a049;
+//     }
+//   }
+  
+//   .separator {
+//     border: none;
+//     height: 1px;
+//     background-color: #444; // Séparateur plus clair
+//   }
+  
+//   .no-users,
+//   .no-friends,
+//   .no-blocked,
+//   .no-pending-requests {
+//     color: #aaa; // Gris pour le texte quand il n'y a pas d'éléments
+//     text-align: center;
+//     padding: 20px;
+//   }
+  
+//   @media (max-width: 1200px) {
+//     .user-list-box,
+//     .friend-list-box,
+//     .blocked-list-box,
+//     .pending-requests-box {
+//       width: 90%; // Adaptatif en fonction de la largeur de l'écran
+//       max-height: 90%; // Adaptatif en fonction de la hauteur de l'écran
+//     }
+//   }
+  
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+.alert-message {
+  color: #fff;
+  background-color: #f44336; // Rouge pour les erreurs
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  background-color: rgba(21, 27, 157, 0.52);
+  padding: 10px 0;
+  border-radius: 20px;
+  margin: auto;
+  width: 90%; // Adaptatif en fonction de la largeur de l'écran
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
+  button {
+    background: none;
+    border: 1px solid transparent;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+    font-size: 1em;
+
+    &:hover {
+      border-color: #fff;
+    }
+
+    &.active {
+      background-color: #555;
+      border-color: #555;
+    }
+  }
+}
+
+body {
+  background-color: #1E1E1E;
+}
+
+.user-list-box,
+.friend-list-box,
+.blocked-list-box,
+.pending-requests-box {
+  background-color: rgba(140, 165, 214, 0.19);
+  border-radius: 50px;
+  width: 90%; // Adaptatif en fonction de la largeur de l'écran
+  max-height: 90%; // Adaptatif en fonction de la hauteur de l'écran
+  margin: auto;
+  padding: 20px;
+  overflow-y: auto;
+  position: relative;
+  margin-top: 10vh;
+}
+
+.user-item,
+.friend-item,
+.blocked-item,
+.pending-request-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #444;
+}
+
+.ellipse {
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.user-name,
+.friend-name,
+.blocked-name,
+.pending-request-name {
+  flex-grow: 1;
+  color: #fff;
+}
+
+.user-actions,
+.friend-actions,
+.blocked-actions,
+.pending-request-actions {
+  display: flex;
+  justify-content: space-around;
+}
+
+button {
+  background-color: #5F6A7D;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #45a049;
+  }
+}
+
+.separator {
+  border: none;
+  height: 1px;
+  background-color: #444;
+}
+
+.no-users,
+.no-friends,
+.no-blocked,
+.no-pending-requests {
+  color: #aaa;
+  text-align: center;
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .tabs {
+    flex-direction: column;
+    padding: 5px 0;
+
+    button {
+      margin-bottom: 10px;
+      font-size: 0.8em;
+    }
+  }
+
+  .user-list-box,
+  .friend-list-box,
+  .blocked-list-box,
+  .pending-requests-box {
+    width: 100%;
+    max-height: 100%;
+    padding: 10px;
+    margin-top: 5vh;
+  }
+
+  .user-actions,
+  .friend-actions,
+  .blocked-actions,
+  .pending-request-actions {
+    flex-direction: column;
+  }
+}
