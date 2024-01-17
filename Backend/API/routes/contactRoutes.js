@@ -28,4 +28,19 @@ router.put('/accept', authMiddleware.authenticateJWT, contactController.approuve
 //route pour lister les invitations
 router.get('/invitation', authMiddleware.authenticateJWT, contactController.getPendingContactRequests);
 
+// route pour cree un groupe
+router.post('/addgroup', authMiddleware.authenticateJWT, contactController.createGroup);
+
+// route pour mettre a jour un groupe
+router.put('/updategroup', authMiddleware.authenticateJWT, contactController.updateGroup);
+
+// route pour recuperer les membres d'un groupe
+router.post('/groupmembers', authMiddleware.authenticateJWT, contactController.getGroupMembers);
+
+// route pour supprimer un groupe
+router.post('/deletegroup', authMiddleware.authenticateJWT, contactController.deleteGroup);
+
+// route pour recuperer les groupes d'un utilisateur
+router.get('/groups', authMiddleware.authenticateJWT, contactController.getUserGroups);
+
 module.exports = router;

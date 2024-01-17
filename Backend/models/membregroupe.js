@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     ID_Groupe: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      primaryKey: true,
       references: {
         model: 'Groupes',
         key: 'ID_Groupe'
@@ -24,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     ID_User: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      primaryKey: true,
       references: {
         model: 'Utilisateurs',
         key: 'ID_User'
@@ -37,6 +39,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'MembreGroupe',
+    tableName: 'MembreGroupes',
+    timestamps: true, 
+    freezeTableName: true 
   });
   return MembreGroupe;
 };

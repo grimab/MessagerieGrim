@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   errorMessage: string | null = null;
+  successMessage: string | null = null;
   public isPasswordVisible: boolean = false;
 
   constructor(
@@ -30,14 +31,22 @@ export class LoginComponent {
 
     this.newAuthService.login(Email, hashedPassword).subscribe((response: any) => {
       if (response.success) {
+        this.successMessage = response.message;
         this.router.navigate(['/home']);
         // Store the webSocketToken in the localStorage
         localStorage.setItem('webSocketToken', response.webSocketToken);
         // Connect to the WebSocket
         this.webSocketService.connect(response.webSocketToken);
       }
+    else {
+      this.errorMessage = response.error.error.message || "Une erreur est survenue lors de la connexion. Veuillez réessayer.";
+    }
+
     }, (error: any) => {
-      this.errorMessage = error.error?.error?.message || "Une erreur est survenue lors de la connexion. Veuillez réessayer.";
+      
+     
+      
+      this.errorMessage = error.error.error.message  || "Une erreur est survenue lors de la connexion. Veuillez réessayer.";
     });
   }
 }

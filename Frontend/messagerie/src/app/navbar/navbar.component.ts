@@ -60,6 +60,7 @@ export class NavbarComponent implements OnInit {
       },
       error: (err) => {
         console.error('Erreur lors de la vérification du statut de connexion', err);
+        alert('Erreur lors de la vérification du statut de connexion');
       }
     });
   }
@@ -67,13 +68,14 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.authService.logout().subscribe({
       next: () => {
-        this.authService.handleLogoutResponse();
         this.isLoggedIn = false;
         this.router.navigate(['/login']);
       },
       error: (err) => {
         console.error('Erreur lors de la déconnexion', err);
+        alert('Erreur lors de la déconnexion');
       }
     });
   }
+  
 }

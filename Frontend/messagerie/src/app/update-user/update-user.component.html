@@ -22,12 +22,14 @@
         <form *ngIf="showUpdateInfoForm" (ngSubmit)="onUpdateInfo(infoForm.value)" #infoForm="ngForm" class="update-form">
         <div class="form-group">
               <label for="Nom">Nom</label>
-              <input type="text" id="Nom" name="Nom" [(ngModel)]="user.Nom" required class="form-control">
+              <input type="text" id="Nom" name="Nom" [(ngModel)]="user.Nom" required  pattern="[a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+([-'\s][a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+)*" class="form-control">
+              <!-- <input type="text" id="Nom" name="Nom" [(ngModel)]="user.Nom" required class="form-control"> -->
           </div>
           
           <div class="form-group">
               <label for="Prenom">Prénom</label>
-              <input type="text" id="Prenom" name="Prenom" [(ngModel)]="user.Prenom" required class="form-control">
+              <input type="text" id="Prenom" name="Prenom" [(ngModel)]="user.Prenom" required pattern="[a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+([-'\s][a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+)*" class="form-control">
+              <!-- <input type="text" id="Prenom" name="Prenom" [(ngModel)]="user.Prenom" required class="form-control"> -->
           </div>
            
           <div class="form-group">
@@ -96,6 +98,11 @@
   <button type="submit" [disabled]="!securityForm.valid" class="update-button">Mettre à jour la question</button>
 </form>
 
+<h1 class="delete-title clickable" (click)="toggleDeleteAccountForm()" class="update-title clickable">Supprimer mon compte</h1>
 
+<form *ngIf="showDeleteAccountForm" (ngSubmit)="onDeleteAccount()" #deleteForm="ngForm" class="update-form">
+
+  <button type="submit" class="update-button">Supprimer mon compte</button>
+</form>
   </div>
 </div>

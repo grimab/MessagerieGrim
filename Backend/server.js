@@ -38,15 +38,17 @@ app.use(cors(corsOptions));
 // Limitez le nombre de requêtes par adresse IP
 const rateLimit = require("express-rate-limit");
 const apiLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100, 
+  windowMs: 5 * 60 * 1000, // 5 minutes
+  max: 50,  // Limite chaque IP à 50 requêtes par windowMs
   handler: function(req, res, next) {
+    console.log("Limite de requêtes dépassée");
     next(new Error('Limite de requêtes dépassée'));
   }
 });
 
-app.use("/api/users/register", apiLimiter);
+// app.use("/api/users/register", apiLimiter);
 app.use("/api/users/login", apiLimiter);
+
 
 
 // Middlewares

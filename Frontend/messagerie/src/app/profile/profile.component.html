@@ -35,6 +35,8 @@
           <span class="label">Statut</span>
           <span class="value">{{ user.Statut }}</span>
         </div>
+        <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+            <p *ngIf="successMessage" class="success">{{ successMessage }}</p> 
         <div class="info-update-button">
           <button (click)="navigateToUpdate()">Modifier Mes informations</button>
         </div>

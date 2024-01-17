@@ -1,21 +1,6 @@
 
 
-// @import '../login/login.component.scss';
-// .security-question-background {
-//     @extend .login-background; // Hérite du style de login-background
-  
-//     .security-question-container {
-//       @extend .login-container; // Hérite du style de login-container
-  
-//       .security-question-title {
-//         @extend .login-title; // Hérite du style de login-title
-//       }
-  
-//       .security-question-button {
-//         @extend .login-button; // Hérite du style de login-button
-//       }
-//     }
-//   }
+
   
 
 @import '../login/login.component.scss';
@@ -28,11 +13,17 @@
 
     .security-question-title {
       @extend .login-title;
+      
     }
 
     .security-question-button {
       @extend .login-button;
     }
+    #securityQuestion option {
+      background-color: gray; // Remplacez par la couleur de fond que vous souhaitez
+      color: white; // Couleur du texte dans les options, changez-la selon vos besoins
+  }
+  
   }
 
   @media (max-width: 768px) {

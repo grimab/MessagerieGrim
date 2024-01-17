@@ -36,6 +36,7 @@ export class UpdateUserComponent {
   showUpdateStatusForm: boolean = false;
   showChangePasswordForm: boolean = false;
   showUpdateSecurityQuestionForm: boolean = false;
+  showDeleteAccountForm: boolean = false;
 
   toggleUpdateInfoForm() {
     this.showUpdateInfoForm = !this.showUpdateInfoForm;
@@ -51,6 +52,12 @@ export class UpdateUserComponent {
 
   toggleUpdateSecurityQuestionForm() {
     this.showUpdateSecurityQuestionForm = !this.showUpdateSecurityQuestionForm;
+  }
+
+  toggleDeleteAccountForm() {
+    // Implémenter la logique ici
+    this.showDeleteAccountForm = !this.showDeleteAccountForm;
+    
   }
 
   constructor(private authService: NewAuthService, private router: Router) {}
@@ -157,6 +164,20 @@ uploadProfileImage(file: File): void {
     });
 }
 
+  onDeleteAccount() {
+    
+    this.authService.deleteAccount().subscribe({
+      next: (response) => {
+        // Gérer la réponse positive ici
+        alert('Compte supprimé avec succès!');
+        this.router.navigate(['/login']);
+      },
+      error: (error) => {
+        // Gérer les erreurs ici
+        console.error('Erreur lors de la suppression du compte:', error);
+      }
+    });
+  }
 
 
 }

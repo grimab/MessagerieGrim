@@ -77,5 +77,32 @@ getMyFriends(): Observable<any> {
   //   });
   // }
 
+  createGroup(groupData: any): Observable<any> {
+ 
+    return this.http.post(`${this.apiUrl}/addgroup`, groupData, { withCredentials: true });
+  }
+
+  updateGroup(groupData: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/updategroup`, groupData, { withCredentials: true });
+  }
+
+  getGroups(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/groups`, { withCredentials: true });
+  }
+
+  getGroupMembers(ID_Group: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/groupmembers`, { ID_Groupe: ID_Group }, { withCredentials: true });
+  }
+  
+
+  deleteGroup(ID_Group: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/deletegroup`, { ID_Groupe: ID_Group }, { withCredentials: true });
+  }
+  
+
+
+
+  
+
   
 }

@@ -3,7 +3,7 @@
 const tokenStore = new Map();
 
 exports.storeToken = (userId, token) => {
-    const expiration = Date.now() + 1000 * 60 * 60; // 60 minutes
+    const expiration = Date.now() + 1000 * 60 * 60 * 24; // 24 h 
     tokenStore.set(token, { userId, expiration });
 };
 

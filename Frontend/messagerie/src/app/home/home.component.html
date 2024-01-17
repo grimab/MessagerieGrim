@@ -5,16 +5,15 @@
       class="menu-item messages-individuelle"
       (click)="selectIndividualMessages()"
     >
-      <!-- <fa-icon [icon]="['fas', 'comment-dots']"></fa-icon> -->
       <span>Messages individuels</span>
       <fa-icon
         [icon]="['fas', 'circle-plus']"
         (click)="openNewConversationForm()"
       ></fa-icon>
-      <!-- <fa-icon [icon]="['fas', 'circle-plus']"></fa-icon> -->
     </div>
-    <!-- Individual messages list -->
+
     <div *ngIf="individualSelected" class="conversation-list">
+      <!-- Liste des conversations individuelles -->
       <div
         class="conversation"
         *ngFor="let conversation of individualConversations"
@@ -23,7 +22,6 @@
         <div class="title">
           {{ conversation.Utilisateur2.Nom }}
           {{ conversation.Utilisateur2.Prenom }}
-
           <fa-icon
             [icon]="['fas', 'trash-can']"
             (click)="deleteConversation(conversation.ID_Conversation)"
@@ -35,11 +33,10 @@
       </div>
     </div>
 
-    <!-- Formulaire pour nouvelle conversation -->
+    <!-- Formulaire de création de nouvelle conversation -->
     <div *ngIf="showNewConversationForm" class="new-conversation-form">
       <h3>Créer une nouvelle conversation</h3>
       <div class="friend-list">
-        <!-- Boucle pour afficher la liste des amis -->
         <div *ngFor="let friend of friends">
           <label>
             <input
@@ -56,44 +53,137 @@
     </div>
 
     <div class="menu-item messages-groupes" (click)="selectGroupMessages()">
-      <span>Messages groupes</span>
-      <fa-icon [icon]="['fas', 'circle-plus']"></fa-icon>
+      <span>Messages de groupe</span>
+      <fa-icon
+        [icon]="['fas', 'circle-plus']"
+        (click)="openGroupCreationForm()"
+      ></fa-icon>
     </div>
-    <!-- Group messages list -->
-    <div *ngIf="groupSelected" class="conversation-list">
-      <div class="conversation" *ngFor="let conversation of groupConversations">
-        <div class="title">{{ conversation.name }}</div>
-        <div class="last-message">{{ conversation.lastMessage }}</div>
+
+    <div *ngIf="groupSelected && !showEditGroupForm" class="conversation-list">
+      <!-- Liste des conversations de groupe -->
+      <div
+        class="conversation"
+        *ngFor="let group of groupConversations"
+        (click)="selectGroupConversation(group)"
+      >
+        <!-- <div class="conversation" *ngFor="let group of groupConversations"> -->
+        <div class="title">
+          {{ group.Nom_du_groupe }}
+          <fa-icon
+            [icon]="['fas', 'trash-can']"
+            (click)="deleteGroup(group.ID_Groupe)"
+          ></fa-icon>
+          <fa-icon
+            [icon]="['fas', 'ellipsis-vertical']"
+            (click)="openEditGroupForm(group)"
+          ></fa-icon>
+        </div>
+        <div class="last-message">
+          {{ group.Dernier_message || "Pas de message" }}
+        </div>
       </div>
+    </div>
+
+    <!-- Formulaire de création de groupe -->
+    <div *ngIf="showGroupCreationForm" class="new-group-form">
+      <h3>Créer un nouveau groupe</h3>
+      <input
+        type="text"
+        [(ngModel)]="newGroupName"
+        placeholder="Nom du groupe"
+      />
+      <textarea
+        [(ngModel)]="newGroupDescription"
+        placeholder="Description du groupe"
+      ></textarea>
+      <div class="friend-list">
+        <div *ngFor="let friend of friends">
+          <label>
+            <input
+              type="checkbox"
+              [value]="friend.ID_User"
+              (change)="toggleGroupMember(friend.ID_User)"
+            />
+            {{ friend.Nom }} {{ friend.Prenom }}
+          </label>
+        </div>
+      </div>
+      <button (click)="createGroup()">Créer le groupe</button>
+    </div>
+
+    <!-- Formulaire de modification de groupe -->
+    <div *ngIf="groupSelected && showEditGroupForm" class="edit-group-form">
+      <h3>Modifier le groupe</h3>
+      <h4>Informations du groupe</h4>
+      <input
+        type="text"
+        [(ngModel)]="editGroupName"
+        placeholder="Nom du groupe"
+      />
+      <textarea
+        [(ngModel)]="editGroupDescription"
+        placeholder="Description du groupe"
+      ></textarea>
+
+      <!-- Section pour ajouter des membres au groupe -->
+      <div class="add-members">
+        <h4>Ajouter des membres</h4>
+        <div *ngFor="let friend of getFriendsNotInGroup()">
+          <label>
+            <input
+              type="checkbox"
+              [value]="friend.ID_User"
+              (change)="toggleMemberToAdd(friend.ID_User)"
+            />
+            {{ friend.Nom }} {{ friend.Prenom }}
+          </label>
+        </div>
+      </div>
+
+      <!-- Section pour retirer des membres du groupe -->
+      <div class="remove-members">
+        <h4>Retirer des membres</h4>
+        <div *ngFor="let member of groupMembers">
+          <label>
+            <input
+              type="checkbox"
+              [value]="member.Utilisateur.ID_User"
+              (change)="toggleMemberToRemove(member.Utilisateur.ID_User)"
+            />
+            {{ member.Utilisateur.Nom }} {{ member.Utilisateur.Prenom }}
+          </label>
+        </div>
+      </div>
+
+      <!-- Section pour promouvoir des administrateurs -->
+      <div class="promote-admins">
+        <h4>Promouvoir des administrateurs</h4>
+        <div *ngFor="let member of groupMembers">
+          <label>
+            <input
+              type="checkbox"
+              [value]="member.Utilisateur.ID_User"
+              (change)="toggleMemberToPromote(member.Utilisateur.ID_User)"
+            />
+            {{ member.Utilisateur.Nom }} {{ member.Utilisateur.Prenom }}
+          </label>
+        </div>
+      </div>
+
+      <button (click)="updateGroup()">Enregistrer les modifications</button>
+      <button (click)="cancelEdit()">Annuler</button>
     </div>
   </div>
 
   <div class="content">
-    <div *ngIf="selectedConversation">
-      <!-- En-tête avec le nom et le prénom -->
+    <div *ngIf="selectedConversation && !groupSelected">
       <header class="conversation-header">
         <h3>
-          Discution avec {{ selectedConversation.Utilisateur2.Nom }}
+          Discussion avec {{ selectedConversation.Utilisateur2.Nom }}
           {{ selectedConversation.Utilisateur2.Prenom }}
         </h3>
       </header>
-
-      <!-- Zone d'affichage des messages -->
-      <!-- <section class="messages-container">
-        <div *ngFor="let message of selectedMessages; trackBy: trackByFn" 
-             [ngClass]="{'sent': message.isSentByCurrentUser, 'received': !message.isSentByCurrentUser}">
-          <article class="message-content">
-           
-            <div class="message-details">
-              <span class="message-author">{{ message.isSentByCurrentUser ? 'Vous' : (message.Utilisateur.Prenom + ' ' + message.Utilisateur.Nom) }}</span>
-              <span class="message-timestamp">{{ message.Date_et_heure | date: 'medium' }}</span>
-            </div>
-            <p>{{ message.Contenu_du_message }}</p>
-          </article>
-        </div>
-      </section> -->
-
-      <!-- Zone d'affichage des messages -->
       <section class="messages-container" #messagesContainer>
         <div
           *ngFor="let message of selectedMessages; trackBy: trackByFn"
@@ -113,20 +203,16 @@
                         message.Utilisateur?.Nom || "Utilisateur inconnu"
                 }}
               </span>
-              <span class="message-timestamp">
-                {{
-                  message.Date_et_heure
-                    ? (message.Date_et_heure | date : "medium")
-                    : "Date inconnue"
-                }}
-              </span>
+              <span class="message-timestamp">{{
+                message.Date_et_heure
+                  ? (message.Date_et_heure | date : "medium")
+                  : "Date inconnue"
+              }}</span>
             </div>
             <p>{{ message.Contenu_du_message || "Message vide" }}</p>
           </article>
         </div>
       </section>
-
-      <!-- Zone de saisie pour envoyer des messages -->
       <footer class="message-input-container">
         <input
           type="text"
@@ -143,14 +229,62 @@
         </button>
       </footer>
     </div>
-  </div>
 
-  <!-- Notification des succès et erreurs -->
-  <div *ngIf="successMessage" class="alert alert-success">
-    {{ successMessage }}
-  </div>
-  <div *ngIf="errorMessage" class="alert alert-danger">
-    {{ errorMessage }}
-  </div>
+    <div *ngIf="selectedGroup && groupSelected">
+      <header class="conversation-header">
+        <h3>Discussion de groupe : {{ selectedGroup.Nom_du_groupe }}</h3>
+      </header>
+      <section class="messages-container" #messagesContainer>
+        <div
+          *ngFor="let message of selectedGroupMessages; trackBy: trackByFn"
+          [ngClass]="{
+            sent: message.isSentByCurrentUser,
+            received: !message.isSentByCurrentUser
+          }"
+        >
+          <article class="message-content">
+            <div class="message-details">
+              <span class="message-author">
+                {{
+                  message.isSentByCurrentUser
+                    ? "Vous"
+                    : message.Utilisateur.Prenom + " " + message.Utilisateur.Nom
+                }}
+              </span>
+              <span class="message-timestamp">
+                {{
+                  message.Date_et_heure
+                    ? (message.Date_et_heure | date : "medium")
+                    : "Date inconnue"
+                }}
+              </span>
+            </div>
+            <p>{{ message.Contenu_du_message || "Message vide" }}</p>
+          </article>
+        </div>
+      </section>
+      <footer class="message-input-container">
+        <input
+          type="text"
+          class="message-input"
+          [(ngModel)]="newMessage"
+          aria-label="Tapez votre message ici"
+        />
+        <button
+          class="send-message-button"
+          (click)="sendGroupMessage()"
+          aria-label="Envoyer le message"
+        >
+          Envoyer
+        </button>
+      </footer>
+    </div>
 
+    <div *ngIf="successMessage" class="alert alert-success">
+      {{ successMessage }}
+    </div>
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+  </div>
 </div>

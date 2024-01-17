@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 
 export class NewRegisterComponent {
   errorMessage: string | null = null;
+  successMessage: string | null = null;
   hashedPassword: string = '';
   confirmPassword: string = '';
 
@@ -31,16 +32,20 @@ export class NewRegisterComponent {
         // Si l'inscription est réussie, rediriger l'utilisateur .
         // Par exemple :
         if (response.success) {
-          alert('Vous êtes maintenant connecté!');
+          this.successMessage = response.message;
+          
           // this.router.navigate(['/home']);
           this.router.navigate(['/set-security-question']);
 
+      }else {
+        this.errorMessage = response.error.error.message || "Une erreur est survenue lors de l'inscription. Veuillez réessayer.";
+        // alert(this.errorMessage);
       }
       
     }, (error: any) => {
         console.log("Erreur complète:", error);
         this.errorMessage = error.error?.error?.message || "Une erreur est survenue lors de l'inscription. Veuillez réessayer.";
-        alert(this.errorMessage);
+        // alert(this.errorMessage);
     });
   }
 }

@@ -12,6 +12,7 @@ import { NewAuthService } from '../services/new-auth.service';
 export class ProfileComponent implements OnInit {
   user: any = {};
   errorMessage: string | null = null;
+  successMessage: string | null = null;
 
   constructor(
     private authService: NewAuthService,

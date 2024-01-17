@@ -1,0 +1,20 @@
+# Dossiers à ignorer
+/node_modules
+/dist
+/build
+
+# Fichiers à ignorer
+.env
+.DS_Store
+*.log
+*.tmp
+
+# Fichiers de configuration à ignorer
+/.env.local
+/.env.development.local
+/.env.test.local
+/.env.production.local
+
+# Fichiers de dépendances à ignorer
+/yarn.lock
+/package-lock.json
