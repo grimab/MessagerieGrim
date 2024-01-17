@@ -1,124 +1,30 @@
-# Node.js
-node_modules/
-npm-debug.log
-yarn-error.log
-package-lock.json
-Backend/node_modules/
+# Racine du projet
+/node_modules
+/dist
+/*.log
+/npm-debug.log*
 
-# Express
-dist/
+# Backend
+/Backend/node_modules
+/Backend/.env
+/Backend/.env.local
+/Backend/.env.development
+/Backend/.env.test
+/Backend/.env.production
+/Backend/*.pem
+/Backend/*.key
+/Backend/.vscode
 
-# Angular
-/dist/
-/node_modules/
-/.angular/
-/.ng_build/
-/angular.json
-/tsconfig.json
-/tsconfig.app.json
-/tsconfig.spec.json
-/e2e/
-/karma.conf.js
-/jest.config.js
-
-# Logs
-logs/
-*.log
-npm-debug.log*
-
-# IDE
-.idea/
-
-.vscode/
-
-# OS generated files
-.DS_Store
-Thumbs.db
-
-# Environment variables
-.env
-.env.local
-.env.*.local
-.env.development
-.env.production
-.env.test
-.env.staging
-
-# Dependencies
-*.rbc
-*.sassc
-.sass-cache/
-.capistrano/
-.zeus.sock
-.zeus.pid
-*.suo
-*.user
-*.userosscache
-*.suo
-*.user
-*.suo
-*.userosscache
-*.suo
-*.user
-*.suo
-*.userosscache
-*.suo
-*.user
-*.suo
-*.userosscache
-*.suo
-*.user
-
-# Compiled Python files
-*.pyc
-
-# Compiled Ruby files
-*.rb[co]
-
-# Compiled Java files
-*.class
-
-# Compiled TypeScript files
-*.tsbuildinfo
-
-# Compiled Objective-C files
-*.o
-
-# Compiled Jupyter notebooks
-*.ipynb_checkpoints/
-__pycache__/
-
-# Compiled DLLs
-*.dll
-*.exe
-
-# Built application files
-*.apk
-*.app
-*.exe
-*.ipa
-*.jar
-*.war
-*.pyc
-
-# Webpack build files
-/dist/
-/public/
-
-# Yarn
-yarn-error.log
-.pnp/
-.pnp.js
-
-# TypeScript
-*.tsbuildinfo
-
-# VS Code directories
-.vscode/
-
-# macOS
-.DS_Store
-
-# Windows
-Thumbs.db
-Desktop.ini
+# Frontend
+/Frontend/messagerie/node_modules
+/Frontend/messagerie/dist
+/Frontend/messagerie/.env
+/Frontend/messagerie/.env.local
+/Frontend/messagerie/.env.development
+/Frontend/messagerie/.env.test
+/Frontend/messagerie/.env.production
+/Frontend/messagerie/e2e/*.js
+/Frontend/messagerie/e2e/*.ts
+/Frontend/messagerie/src/environments
+/Frontend/messagerie/src/test.ts
+/Frontend/messagerie/.vscode

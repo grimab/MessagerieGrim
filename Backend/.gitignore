@@ -9,6 +9,8 @@
 *.log
 *.tmp
 
+/node_modules
+
 # Fichiers de configuration à ignorer
 /.env.local
 /.env.development.local
