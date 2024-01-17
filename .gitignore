@@ -3,7 +3,7 @@
 /dist
 /*.log
 /npm-debug.log*
-/node_modules
+
 
 
 # Backend
@@ -30,3 +30,4 @@
 /Frontend/messagerie/src/environments
 /Frontend/messagerie/src/test.ts
 /Frontend/messagerie/.vscode
+/Frontend/messagerie/.angular
