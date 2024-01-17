@@ -3,6 +3,8 @@
 /dist
 /*.log
 /npm-debug.log*
+/node_modules
+
 
 # Backend
 /Backend/node_modules
